@@ -93,27 +93,7 @@ class HiveonMiner:
 
         return result
 
-    def start(self):
-        self._logger.info("Starting Hiveon miner")
-
-        session = requests.Session()
-
-        self._subscribe(session)
-
-        while True:
-            job = self._get_job(session)
-
-            if job != self._job:
-                self._job = job
-                self._job_id = job["job_id"]
-                self._nonce = 0
-                self._hash_result = ""
-
-                self._logger.debug(f"New job: {job}")
-
-                data = bytearray.fromhex(job["data"])
-                target = bytearray.fromhex(job["target"])
-    def start(self):
+        def start(self):
         self._logger.info("Starting Hiveon miner")
 
         session = requests.Session()
